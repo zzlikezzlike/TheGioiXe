@@ -134,22 +134,31 @@ function App() {
 
   // Hàm lưu thay đổi sau khi chỉnh sửa
   const handleSave = async () => {
-    try {
-      const response = await fetch(`http://localhost:5000/api/cars/${selectedCar._id}`, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(selectedCar),
-      });
+  try {
+    const response = await fetch(`http://localhost:5000/api/cars/${selectedCar._id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(selectedCar),
+    });
 
-      const updatedCar = await response.json();
-      setCars(cars.map((car) => (car._id === updatedCar._id ? updatedCar : car)));
-      handleClose();
-    } catch (error) {
-      console.error('Error saving edited car:', error);
-    }
-  };
+    const updatedCar = await response.json();
+    
+    // Cập nhật lại cả cars và filteredCars
+    setCars((prevCars) => 
+      prevCars.map((car) => (car._id === updatedCar._id ? updatedCar : car))
+    );
+    setFilteredCars((prevFilteredCars) => 
+      prevFilteredCars.map((car) => (car._id === updatedCar._id ? updatedCar : car))
+    );
+
+    handleClose();
+  } catch (error) {
+    console.error('Error saving edited car:', error);
+  }
+};
+
 
   // Hàm khi thay đổi thông tin xe khi chỉnh sửa
   const handleChange = (e) => {
@@ -210,6 +219,19 @@ function App() {
       })
     );
   };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const imagePath = `/images/${file.name}`;
+      setNewCar((prevCar) => ({
+        ...prevCar,
+        image: imagePath,
+      }));
+    }
+  };
+  
+  
 
   return (
     <Container className="p-4">
@@ -425,6 +447,16 @@ function App() {
         </Modal.Header>
         <Modal.Body>
           <Form>
+          <FloatingLabel controlId="floatingId" label="ID xe (tự động)" className="mb-3">
+              <Form.Control
+                type="text"
+                name="_id"
+                value={newCar._id}
+                readOnly
+                placeholder="ID xe"
+              />
+            </FloatingLabel>
+
             <FloatingLabel controlId="floatingName" label="Tên xe" className="mb-3">
               <Form.Control
                 type="text"
@@ -465,15 +497,24 @@ function App() {
               />
             </FloatingLabel>
 
-            <FloatingLabel controlId="floatingImage" label="URL ảnh xe" className="mb-3">
-              <Form.Control
-                type="text"
-                name="image"
-                value={newCar.image}
-                onChange={handleNewCarChange}
-                placeholder="URL ảnh"
-              />
-            </FloatingLabel>
+            
+            <Form.Group controlId="formFile" className="mb-3">
+              <Form.Label>Chọn ảnh xe</Form.Label>
+              <Form.Control type="file" accept="image/*" onChange={handleImageChange} />
+              
+              {/* Hiển thị ảnh nếu người dùng đã chọn */}
+              {newCar.image && (
+                <div className="mt-3">
+                  <Form.Label>Xem trước ảnh:</Form.Label>
+                  <img
+                    src={newCar.image}
+                    alt="Xem trước ảnh"
+                    style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', border: '1px solid #ccc' }}
+                  />
+                </div>
+              )}
+            </Form.Group>
+
           </Form>
         </Modal.Body>
         <Modal.Footer>

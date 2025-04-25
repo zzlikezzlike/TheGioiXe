@@ -206,31 +206,21 @@ function App() {
   };
 
   // Hàm lọc danh sách xe theo tìm kiếm và bộ lọc
-  const filterCars = (query, filters) => {
-    const lowercasedQuery = query.toLowerCase();
-    setFilteredCars(
-      cars.filter((car) => {
-        return (
-          (filters.category ? car.category.toLowerCase().includes(filters.category.toLowerCase()) : true) &&
-          (filters.price ? car.price <= filters.price : true) &&
-          (filters.manufacturer ? car.manufacturer.toLowerCase().includes(filters.manufacturer.toLowerCase()) : true) &&
-          (car.name.toLowerCase().includes(lowercasedQuery) || car.category.toLowerCase().includes(lowercasedQuery) || car.manufacturer.toLowerCase().includes(lowercasedQuery))
-        );
-      })
-    );
-  };
+const filterCars = (query, filters) => {
+  const lowercasedQuery = query.toLowerCase();
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const imagePath = `/images/${file.name}`;
-      setNewCar((prevCar) => ({
-        ...prevCar,
-        image: imagePath,
-      }));
-    }
-  };
-  
+  setFilteredCars(
+    cars.filter((car) => {
+      // Chuẩn hóa giá trị lọc
+      const categoryMatch = filters.category ? car.category.toLowerCase() === filters.category.toLowerCase() : true;
+      const priceMatch = filters.price ? car.price <= filters.price : true;
+      const manufacturerMatch = filters.manufacturer ? car.manufacturer.toLowerCase().includes(filters.manufacturer.toLowerCase()) : true;
+      const searchMatch = car.name.toLowerCase().includes(lowercasedQuery) || car.category.toLowerCase().includes(lowercasedQuery) || car.manufacturer.toLowerCase().includes(lowercasedQuery);
+
+      return categoryMatch && priceMatch && manufacturerMatch && searchMatch;
+    })
+  );
+};
   
 
   return (
@@ -263,7 +253,8 @@ function App() {
           {/* Dùng các loại xe từ danh sách có sẵn hoặc trong dữ liệu */}
           <option value="SUV">SUV</option>
           <option value="Sedan">Sedan</option>
-          <option value="Truck">Truck</option>
+          <option value="Pickup">Pickup</option>
+          <option value="Electric">Electric</option>
           {/* Thêm các loại xe khác */}
         </Form.Control>
 
@@ -361,15 +352,15 @@ function App() {
               </Col>
               <Col md={6}>
                 <Form>
-                  <FloatingLabel controlId="floatingId" label="ID xe" className="mb-3">
-                    <Form.Control 
-                      type="text" 
-                      name="_id" 
-                      value={selectedCar._id} 
-                      readOnly
-                      placeholder="ID xe"
-                    />
-                  </FloatingLabel>
+                <FloatingLabel controlId="floatingId" label="ID xe (tự động)" className="mb-3">
+                  <Form.Control
+                    type="text"
+                    name="_id"
+                    value={newCar._id}
+                    readOnly
+                    placeholder="ID xe"
+                  />
+                </FloatingLabel>
 
                   <FloatingLabel controlId="floatingName" label="Tên xe" className="mb-3">
                     <Form.Control 
@@ -498,22 +489,16 @@ function App() {
             </FloatingLabel>
 
             
-            <Form.Group controlId="formFile" className="mb-3">
-              <Form.Label>Chọn ảnh xe</Form.Label>
-              <Form.Control type="file" accept="image/*" onChange={handleImageChange} />
-              
-              {/* Hiển thị ảnh nếu người dùng đã chọn */}
-              {newCar.image && (
-                <div className="mt-3">
-                  <Form.Label>Xem trước ảnh:</Form.Label>
-                  <img
-                    src={newCar.image}
-                    alt="Xem trước ảnh"
-                    style={{ maxWidth: '100%', height: 'auto', borderRadius: '8px', border: '1px solid #ccc' }}
-                  />
-                </div>
-              )}
-            </Form.Group>
+            <FloatingLabel controlId="floatingImage" label="URL ảnh xe" className="mb-3">
+              <Form.Control 
+                type="text" 
+                name="image" 
+                value={selectedCar?.image || ''} 
+                onChange={handleChange}
+                placeholder="Nhập URL ảnh"
+              />
+            </FloatingLabel>
+
 
           </Form>
         </Modal.Body>

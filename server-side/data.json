@@ -1,272 +1,92 @@
 [
   {
-    "id": "CARSED0001",
-    "name": "Toyota Camry",
-    "price": 32000,
-    "category": "Sedan",
-    "manufacturer": "Toyota",
-    "image": "/images/camry.jpg",
-    "features": ["Bluetooth", "Cruise Control", "Backup Camera"]
-  },
-  {
-    "id": "CARPIC0001",
-    "name": "Ford Ranger",
-    "price": 35000,
-    "category": "Pickup",
-    "manufacturer": "Ford",
-    "image": "/images/ranger.jpg",
-    "features": ["4WD", "Tow Package", "Apple CarPlay"]
-  },
-  {
-    "id": "CARSED0002",
-    "name": "Honda Civic",
-    "price": 28000,
-    "category": "Sedan",
-    "manufacturer": "Honda",
-    "image": "/images/civic.jpg",
-    "features": ["Lane Assist", "Heated Seats"]
-  },
-  {
-    "id": "CARELE0001",
-    "name": "Tesla Model 3",
-    "price": 45000,
-    "category": "Electric",
-    "manufacturer": "Tesla",
-    "image": "/images/model3.jpg",
-    "features": ["Autopilot", "Touchscreen Display", "Over-the-air Updates"]
-  },
-  {
-    "id": "CARPIC0002",
-    "name": "Chevrolet Silverado",
-    "price": 42000,
-    "category": "Pickup",
-    "manufacturer": "Chevrolet",
-    "image": "/images/silverado.jpg",
-    "features": ["Heavy Duty", "Off-Road Mode"]
-  },
-  {
-    "id": "CARSUV0001",
-    "name": "BMW X5",
-    "price": 60000,
-    "category": "SUV",
-    "manufacturer": "BMW",
-    "image": "/images/x5.jpg",
-    "features": ["Leather Seats", "Navigation System"]
-  },
-  {
-    "id": "CARSED0003",
-    "name": "Mercedes-Benz C-Class",
-    "price": 52000,
-    "category": "Sedan",
-    "manufacturer": "Mercedes-Benz",
-    "image": "/images/cclass.jpg",
-    "features": ["Ambient Lighting", "Sport Suspension"]
-  },
-  {
-    "id": "CARSUV0002",
-    "name": "Audi Q7",
-    "price": 58000,
-    "category": "SUV",
-    "manufacturer": "Audi",
-    "image": "/images/q7.jpg",
-    "features": ["All-Wheel Drive", "Virtual Cockpit"]
-  },
-  {
-    "id": "CARELE0002",
-    "name": "Nissan Leaf",
-    "price": 29000,
-    "category": "Electric",
-    "manufacturer": "Nissan",
-    "image": "/images/leaf.jpg",
-    "features": ["Eco Mode", "ProPILOT Assist"]
-  },
-  {
-    "id": "CARSUV0003",
-    "name": "Hyundai Tucson",
-    "price": 31000,
-    "category": "SUV",
-    "manufacturer": "Hyundai",
-    "image": "/images/tucson.jpg",
-    "features": ["Blind Spot Monitor", "Keyless Entry"]
-  },
-  {
-    "id": "CARSUV0004",
-    "name": "Mazda CX-5",
-    "price": 33000,
-    "category": "SUV",
-    "manufacturer": "Mazda",
-    "image": "/images/cx5.jpg",
-    "features": ["Heads-Up Display", "Rear Cross Traffic Alert"]
-  },
-  {
-    "id": "CARSUV0005",
-    "name": "Kia Sorento",
-    "price": 35000,
-    "category": "SUV",
-    "manufacturer": "Kia",
-    "image": "/images/sorento.jpg",
-    "features": ["Third Row Seating", "Wireless Charging"]
-  },
-  {
-    "id": "CARSED0004",
-    "name": "Volkswagen Golf",
-    "price": 29000,
-    "category": "Sedan",
-    "manufacturer": "Volkswagen",
-    "image": "/images/golf.jpg",
-    "features": ["Turbo Engine", "Rain Sensing Wipers"]
-  },
-  {
-    "id": "CARELE0003",
-    "name": "Porsche Taycan",
-    "price": 90000,
-    "category": "Electric",
-    "manufacturer": "Porsche",
-    "image": "/images/taycan.jpg",
-    "features": ["Sport Mode", "Fast Charging", "Adaptive Suspension"]
-  },
-  {
-    "id": "CARELE0004",
-    "name": "Jaguar I-PACE",
-    "price": 71000,
-    "category": "Electric",
-    "manufacturer": "Jaguar",
-    "image": "/images/ipace.jpg",
-    "features": ["All-Wheel Drive", "Luxury Interior"]
-  },
-  {
-    "id": "CARELE0005",
-    "name": "Chevrolet Bolt",
+    "id": "CARSED0007",
+    "name": "Subaru Impreza",
     "price": 27000,
-    "category": "Electric",
-    "manufacturer": "Chevrolet",
-    "image": "/images/bolt.jpg",
-    "features": ["Compact Design", "Regen Braking"]
-  },
-  {
-    "id": "CARELE0006",
-    "name": "Ford Mustang Mach-E",
-    "price": 46000,
-    "category": "Electric",
-    "manufacturer": "Ford",
-    "image": "/images/mache.jpg",
-    "features": ["Performance Mode", "Sync Infotainment"]
-  },
-  {
-    "id": "CARPIC0003",
-    "name": "Rivian R1T",
-    "price": 74000,
-    "category": "Pickup",
-    "manufacturer": "Rivian",
-    "image": "/images/r1t.jpg",
-    "features": ["Adventure Gear Tunnel", "Electric 4WD"]
-  },
-  {
-    "id": "CARPIC0004",
-    "name": "Toyota Hilux",
-    "price": 35000,
-    "category": "Pickup",
-    "manufacturer": "Toyota",
-    "image": "/images/hilux.jpg",
-    "features": ["Off-Road Ready", "Durable Suspension"]
-  },
-  {
-    "id": "CARSUV0006",
-    "name": "Jeep Wrangler",
-    "price": 41000,
-    "category": "SUV",
-    "manufacturer": "Jeep",
-    "image": "/images/wrangler.jpg",
-    "features": ["Removable Roof", "Trail Rated"]
-  },
-  {
-    "id": "CARPIC0005",
-    "name": "Nissan Frontier",
-    "price": 34000,
-    "category": "Pickup",
-    "manufacturer": "Nissan",
-    "image": "/images/frontier.jpg",
-    "features": ["Off-Road Package", "Bed Liner"]
-  },
-  {
-    "id": "CARPIC0006",
-    "name": "GMC Sierra",
-    "price": 45000,
-    "category": "Pickup",
-    "manufacturer": "GMC",
-    "image": "/images/sierra.jpg",
-    "features": ["MultiPro Tailgate", "V8 Engine"]
-  },
-  {
-    "id": "CARPIC0007",
-    "name": "Ram 1500",
-    "price": 48000,
-    "category": "Pickup",
-    "manufacturer": "Ram",
-    "image": "/images/ram1500.jpg",
-    "features": ["Air Suspension", "Large Touchscreen"]
-  },
-  {
-    "id": "CARSUV0007",
-    "name": "Volvo XC90",
-    "price": 62000,
-    "category": "SUV",
-    "manufacturer": "Volvo",
-    "image": "/images/xc90.jpg",
-    "features": ["Pilot Assist", "City Safety"]
-  },
-  {
-    "id": "CARSED0005",
-    "name": "Honda Accord",
-    "price": 31000,
     "category": "Sedan",
-    "manufacturer": "Honda",
-    "image": "/images/accord.jpg",
-    "features": ["Eco Assist", "Push Button Start"]
+    "manufacturer": "Subaru",
+    "image": "/images/impreza.jpg",
+    "features": ["Symmetrical AWD", "EyeSight Driver Assist"]
   },
   {
-    "id": "CARELE0007",
-    "name": "Hyundai Ioniq 5",
-    "price": 43000,
+    "id": "CARSUV0011",
+    "name": "Toyota RAV4",
+    "price": 34000,
+    "category": "SUV",
+    "manufacturer": "Toyota",
+    "image": "/images/rav4.jpg",
+    "features": ["Hybrid Engine", "Dynamic Radar Cruise Control"]
+  },
+  {
+    "id": "CARPIC0008",
+    "name": "Isuzu D-Max",
+    "price": 37000,
+    "category": "Pickup",
+    "manufacturer": "Isuzu",
+    "image": "/images/dmax.jpg",
+    "features": ["4WD", "Hill Descent Control"]
+  },
+  {
+    "id": "CARELE0008",
+    "name": "BMW i4",
+    "price": 67000,
     "category": "Electric",
-    "manufacturer": "Hyundai",
-    "image": "/images/ioniq5.jpg",
-    "features": ["Solar Roof", "Vehicle-to-Load"]
+    "manufacturer": "BMW",
+    "image": "/images/i4.jpg",
+    "features": ["eDrive Technology", "Harman Kardon Audio"]
   },
   {
-    "id": "CARSED0006",
-    "name": "Genesis G80",
+    "id": "CARSED0008",
+    "name": "Skoda Octavia",
+    "price": 26000,
+    "category": "Sedan",
+    "manufacturer": "Skoda",
+    "image": "/images/octavia.jpg",
+    "features": ["Virtual Cockpit", "SmartLink+ Connectivity"]
+  },
+  {
+    "id": "CARELE0009",
+    "name": "Lucid Air",
+    "price": 87000,
+    "category": "Electric",
+    "manufacturer": "Lucid Motors",
+    "image": "/images/lucidair.jpg",
+    "features": ["Long Range Battery", "Glass Cockpit Display"]
+  },
+  {
+    "id": "CARSUV0012",
+    "name": "Peugeot 3008",
+    "price": 36000,
+    "category": "SUV",
+    "manufacturer": "Peugeot",
+    "image": "/images/3008.jpg",
+    "features": ["i-Cockpit", "Panoramic Roof"]
+  },
+  {
+    "id": "CARPIC0009",
+    "name": "Mitsubishi Triton",
+    "price": 36500,
+    "category": "Pickup",
+    "manufacturer": "Mitsubishi",
+    "image": "/images/triton.jpg",
+    "features": ["Super Select 4WD-II", "Hill Start Assist"]
+  },
+  {
+    "id": "CARSED0009",
+    "name": "Alfa Romeo Giulia",
     "price": 53000,
     "category": "Sedan",
-    "manufacturer": "Genesis",
-    "image": "/images/g80.jpg",
-    "features": ["Luxury Design", "Smart Parking Assist"]
+    "manufacturer": "Alfa Romeo",
+    "image": "/images/giulia.jpg",
+    "features": ["Turbocharged Engine", "DNA Drive Mode Selector"]
   },
   {
-    "id": "CARSUV0008",
-    "name": "Cadillac Escalade",
-    "price": 85000,
-    "category": "SUV",
-    "manufacturer": "Cadillac",
-    "image": "/images/escalade.jpg",
-    "features": ["Premium Sound", "Rear Seat Entertainment"]
-  },
-  {
-    "id": "CARSUV0009",
-    "name": "Subaru Outback",
-    "price": 37000,
-    "category": "SUV",
-    "manufacturer": "Subaru",
-    "image": "/images/outback.jpg",
-    "features": ["Symmetrical AWD", "Roof Rails"]
-  },
-  {
-    "id": "CARSUV0010",
-    "name": "Lexus RX",
-    "price": 55000,
-    "category": "SUV",
-    "manufacturer": "Lexus",
-    "image": "/images/rx.jpg",
-    "features": ["Hybrid Option", "Mark Levinson Audio"]
+    "id": "CARELE0010",
+    "name": "BYD Atto 3",
+    "price": 33000,
+    "category": "Electric",
+    "manufacturer": "BYD",
+    "image": "/images/atto3.jpg",
+    "features": ["Blade Battery", "360° Camera"]
   }
 ]

@@ -47,7 +47,8 @@ const carSchema = new mongoose.Schema({
 const Car = mongoose.model('Car', carSchema);
 
 // API Endpoints
-app.get('/api/cars', async (req, res) => {
+app.get('/', async (req, res) => {
+  console.log('🟢 Đã nhận yêu cầu GET /');
   try {
     const cars = await Car.find();
     res.json(cars.length > 0 ? cars : { message: "Không có dữ liệu xe trong collection" });
@@ -57,7 +58,7 @@ app.get('/api/cars', async (req, res) => {
 });
 
 // Thêm xe mới (với upload ảnh)
-app.post('/api/cars', upload.single('image'), async (req, res) => {
+app.post('/', upload.single('image'), async (req, res) => {
   try {
     const { name, category, price, manufacturer } = req.body;
     const image = req.file ? `/images/${req.file.filename}` : '';
@@ -78,21 +79,26 @@ app.post('/api/cars', upload.single('image'), async (req, res) => {
 });
 
 // Các endpoint khác (PUT, DELETE) giữ nguyên
-app.put('/api/cars/:id', async (req, res) => {
+app.put('/:id', async (req, res) => {
   try {
     const updatedCar = await Car.findByIdAndUpdate(
       req.params.id,
       req.body,
       { new: true, runValidators: true }
     );
-    if (!updatedCar) return res.status(404).json({ error: 'Không tìm thấy xe' });
+
+    if (!updatedCar) {
+      return res.status(404).json({ error: 'Không tìm thấy xe' });
+    }
+
     res.json(updatedCar);
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-app.delete('/api/cars/:id', async (req, res) => {
+
+app.delete('/:id', async (req, res) => {
   try {
     const deletedCar = await Car.findByIdAndDelete(req.params.id);
     if (!deletedCar) return res.status(404).json({ error: 'Không tìm thấy xe' });
@@ -101,6 +107,7 @@ app.delete('/api/cars/:id', async (req, res) => {
     res.status(400).json({ error: err.message });
   }
 });
+
 
 // Khởi động server
 app.listen(PORT, () => {

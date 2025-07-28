@@ -1,22 +1,12 @@
 version: "3.8"
 
 services:
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
   backend:
     build: ./backend
     ports:
       - "5000:5000"
     environment:
-      - MONGO_URL=mongodb://mongo:27017/cardb
-    depends_on:
-      - mongo
-
+      - MONGO_URL=mongodb+srv://TruongSon:0918318110@cluster0.lzuskd0.mongodb.net/TheGioiXe?retryWrites=true&w=majority&appName=Cluster0
   frontend:
     build: ./frontend
     ports:
@@ -24,5 +14,4 @@ services:
     depends_on:
       - backend
 
-volumes:
-  mongo-data:
+

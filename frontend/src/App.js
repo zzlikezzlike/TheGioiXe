@@ -28,7 +28,7 @@ function App() {
     setLoading(true);
     const fetchAllCars = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/cars');
+        const response = await fetch('http://localhost:5000/');
         const data = await response.json();
         setCars(data);
         setFilteredCars(data); // Gán filteredCars là dữ liệu ban đầu
@@ -100,32 +100,38 @@ function App() {
   };
 
   const handleSaveNewCar = async () => {
-    const idExists = cars.some((car) => car._id === newCar._id);
-    if (idExists) {
-      alert('ID xe đã tồn tại. Vui lòng chọn loại xe khác hoặc thử lại.');
-      return;
+  try {
+    const formData = new FormData();
+    formData.append('name', newCar.name);
+    formData.append('category', newCar.category);
+    formData.append('price', newCar.price);
+    formData.append('manufacturer', newCar.manufacturer);
+
+    // Nếu người dùng đã chọn ảnh
+    if (newCar.image instanceof File) {
+      formData.append('image', newCar.image);
     }
 
-    try {
-      const carData = {
-        ...newCar,
-      };
+    const response = await fetch('http://localhost:5000/', {
+      method: 'POST',
+      body: formData,
+    });
 
-      const response = await fetch('http://localhost:5000/api/cars', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(carData),
-      });
+    const addedCar = await response.json();
 
-      const addedCar = await response.json();
-      setCars([...cars, addedCar]);
-      handleCloseAddModal();
-    } catch (error) {
-      console.error('Error adding new car:', error);
-    }
-  };
+    // ✅ Cập nhật lại danh sách ngay
+    setCars((prev) => [...prev, addedCar]);
+    setFilteredCars((prev) => [...prev, addedCar]); // Nếu bạn có filter
+
+    // Đóng modal hoặc form thêm
+    handleCloseAddModal();
+
+  } catch (error) {
+    console.error('Lỗi khi thêm xe:', error);
+  }
+};
+
+
 
   // Hàm chỉnh sửa xe
   const handleEdit = (car) => {
@@ -135,7 +141,7 @@ function App() {
   // Hàm lưu thay đổi sau khi chỉnh sửa
   const handleSave = async () => {
   try {
-    const response = await fetch(`http://localhost:5000/api/cars/${selectedCar._id}`, {
+    const response = await fetch(`http://localhost:5000/${selectedCar._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -178,7 +184,7 @@ function App() {
     const confirmDelete = window.confirm('Bạn có chắc chắn muốn xóa xe này?');
     if (confirmDelete) {
       try {
-        await fetch(`http://localhost:5000/api/cars/${carId}`, {
+        await fetch(`http://localhost:5000/${carId}`, {
           method: 'DELETE',
         });
         setCars(cars.filter((car) => car._id !== carId));
@@ -356,7 +362,7 @@ const filterCars = (query, filters) => {
                   <Form.Control
                     type="text"
                     name="_id"
-                    value={newCar._id}
+                    value={selectedCar._id}
                     readOnly
                     placeholder="ID xe"
                   />
@@ -406,8 +412,8 @@ const filterCars = (query, filters) => {
                     <Form.Control 
                       type="text" 
                       name="image" 
-                      value={selectedCar.image} 
-                      onChange={handleChange}
+                      value={newCar.image} 
+                      onChange={handleNewCarChange}
                       placeholder="URL ảnh"
                     />
                   </FloatingLabel>
@@ -493,8 +499,8 @@ const filterCars = (query, filters) => {
               <Form.Control 
                 type="text" 
                 name="image" 
-                value={selectedCar?.image || ''} 
-                onChange={handleChange}
+                value={newCar.image}
+                onChange={handleNewCarChange}
                 placeholder="Nhập URL ảnh"
               />
             </FloatingLabel>
